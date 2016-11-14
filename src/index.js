@@ -8,6 +8,7 @@ import { Router, Route, browserHistory } from 'react-router';
 // Its then going to tell it's child route to re render with a differnt component
 // browserHistory is what tells Router how to keep track of the current url
 
+import requireAuth from './components/require_authentication'
 import App from './components/app';
 import Resources from './components/resources';
 import reducers from './reducers';
@@ -18,7 +19,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-      <Route path="/resources" component={Resources}></Route>
+      <Route path="/resources" component={requireAuth(Resources)}></Route>
       </Route>
     </Router>
   </Provider>
